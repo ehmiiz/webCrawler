@@ -1,4 +1,5 @@
 const {crawlPage} = require('./crawl.js')
+const {normalizeURL} = require('./crawl.js')
 const {printReport} = require('./report.js')
 
 async function main() {
@@ -12,10 +13,9 @@ async function main() {
         process.exit(1)
     }
     const baseURL = process.argv[2]
-
-    console.log(`Starting crawl -> ${baseURL}`)
+    const normalizedCurrentURL = normalizeURL(baseURL)
+    console.log(`Starting crawl -> ${normalizedCurrentURL}`)
     const pages = await crawlPage(baseURL, baseURL, {})
-
     printReport(pages)
 }
 

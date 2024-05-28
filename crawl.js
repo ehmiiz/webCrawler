@@ -16,8 +16,8 @@ async function crawlPage(baseURL, currentURL, pages) {
     }
     
     pages[normalizedCurrentURL] = 1
-    
-    console.log(`actively crawling ${currentURL}`)
+    console.log('==========')
+    console.log(`actively crawling ${normalizedCurrentURL}`)
     
     try {
         const resp = await fetch(currentURL)
@@ -67,13 +67,15 @@ function getURLsFromHTML(htmlBody, baseURL) {
         }
         else {
             // absolute
-            try {
-                const urlObject = new URL(linkElement.href)
-                urls.push(urlObject.href)
+            if (linkElement.href.length > 1) {
+                try {
+                    const urlObject = new URL(linkElement.href)
+                    urls.push(urlObject.href)
+                }
+                catch (err) {
+                    console.log(`error with absolute url: ${err.message}`)
+                } 
             }
-            catch (err) {
-                console.log(`error with absolute url: ${err.message}`)
-            } 
         }
     }
 
