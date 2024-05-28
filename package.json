@@ -7,6 +7,10 @@
     "start": "node main.js",
     "test": "jest"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com:ehmiiz/webCrawler"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
